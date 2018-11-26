@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name" : "Mr. Muffin's LinkedIn Scraper",
+    "version" : "0.1",
+    "description" : "Scrape prospect data from LinkedIn and send to a Google Sheet.  More organized, customized and faster than the Nimble Widget.",
+    "content_scripts" : [
+        {
+            "matches": ["https://www.linkedin.com/*"],
+            "js": ["content.js"]
+        }
+    ],
+    "background" : {
+        "scripts" : ["background.js"],
+        "persistent" : false
+    },
+    "page_action" :
+    {
+        "default_icon" : "on16.png",
+        "default_popup" : "muffin.html",
+        "default_title" : "Oh Boy!!!!"
+    },
+    "permissions" : [
+        "declarativeContent"
+    ],
+    "icons": { "16": "16.png",
+               "48": "48.png",
+               "128": "128.png" }
+}
