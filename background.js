@@ -25,9 +25,7 @@ chrome.contextMenus.removeAll(function() {
     chrome.contextMenus.create(contextMenuItem);
 });
 
-
-chrome.contextMenus.onClicked.addListener(function(clickData){
-    if (clickData.menuItemId == "scrapeProfile") {
+function scrape_it() {
         var notifOptions = {
             type: "basic",
             iconUrl: "48.png",
@@ -41,10 +39,20 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
         //  instead of calling a content script.
         chrome.tabs.executeScript({
             file: "content.js"
-                    });
+            });
         }
-});
+
+
+
+chrome.contextMenus.onClicked.addListener(function(clickData){
+    if (clickData.menuItemId == "scrapeProfile") {
+            alert("call scrape_it()");
+            scrape_it();
+        } 
+        });
         
 chrome.commands.onCommand.addListener(function(command) {
     alert("keyboard issued the " + command + " command!");
+    alert("call scrape_it()");
+    scrape_it();
 });
