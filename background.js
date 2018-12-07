@@ -21,7 +21,9 @@ var contextMenuItem = {
     "contexts": ["all"]
 };
 
-chrome.contextMenus.create(contextMenuItem);
+chrome.contextMenus.removeAll(function() {
+    chrome.contextMenus.create(contextMenuItem);
+});
 
 
 chrome.contextMenus.onClicked.addListener(function(clickData){
@@ -38,7 +40,7 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
         // Change the background color of the page via injecting simple code
         //  instead of calling a content script.
         chrome.tabs.executeScript({
-            file: 'content.js'
+            file: "content.js"
                     });
         }
 });
