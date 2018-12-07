@@ -44,3 +44,7 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
                     });
         }
 });
+        
+chrome.commands.onCommand.addListener(function(command) {
+    alert("keyboard issued the " + command + " command!");
+});

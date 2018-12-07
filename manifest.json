@@ -6,8 +6,8 @@
     "commands": {
         "scrape-profile": {
             "suggested_key": {
-                "default": "Ctrl+M",
-                "mac": "Command+M"
+                "default": "Ctrl+X",
+                "mac": "Command+X"
             },
             "description": "Scrape the profile."
         }
