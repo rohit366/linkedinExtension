@@ -30,7 +30,7 @@ function scrape_it() {
             type: "basic",
             iconUrl: "48.png",
             title: "!",
-            message: "Oh boy!!!!!!! I Scraped it!!!"
+            message: "Oh boy!!!!!!! I Got SCHWIFTY!!!"
         };
         // Will only work of course if notifications are on
         chrome.notifications.create('scrapeNotif', notifOptions);
@@ -46,13 +46,10 @@ function scrape_it() {
 
 chrome.contextMenus.onClicked.addListener(function(clickData){
     if (clickData.menuItemId == "scrapeProfile") {
-            alert("call scrape_it()");
             scrape_it();
         } 
         });
         
 chrome.commands.onCommand.addListener(function(command) {
-    alert("keyboard issued the " + command + " command!");
-    alert("call scrape_it()");
     scrape_it();
 });

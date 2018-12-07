@@ -6,8 +6,9 @@
     "commands": {
         "scrape-profile": {
             "suggested_key": {
-                "default": "Ctrl+X",
-                "mac": "Command+X"
+                "default": "Ctrl+Shift+E",
+                "mac": "Command+Shift+E"
+
             },
             "description": "Scrape the profile."
         }
@@ -33,7 +34,8 @@
         "activeTab", 
         "contextMenus", 
         "notifications",
-        "tabs"
+        "tabs",
+        "https://script.google.com/macros/s/"
     ],
     "icons": { "16": "16.png",
                "48": "48.png",
