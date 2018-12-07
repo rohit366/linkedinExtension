@@ -7,7 +7,7 @@
         "scrape-profile": {
             "suggested_key": {
                 "default": "Ctrl+M",
-                "mac": "Command+Shift+Y"
+                "mac": "Command+M"
             },
             "description": "Scrape the profile."
         }
@@ -26,11 +26,10 @@
     "page_action" :
     {
         "default_icon" : "on16.png",
-        "default_popup" : "muffin.html",
         "default_title" : "Oh Boy!!!!"
     },
     "permissions" : [
-        "declarativeContent"
+        "declarativeContent", "activeTab", "contextMenus", "notifications"
     ],
     "icons": { "16": "16.png",
                "48": "48.png",

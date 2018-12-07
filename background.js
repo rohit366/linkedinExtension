@@ -15,3 +15,30 @@ chrome.runtime.onInstalled.addListener(function() {
     });
 });
 
+var contextMenuItem = {
+    "id": "scrapeProfile",
+    "title": "Scrape Profile",
+    "contexts": ["all"]
+};
+
+chrome.contextMenus.create(contextMenuItem);
+
+
+chrome.contextMenus.onClicked.addListener(function(clickData){
+    if (clickData.menuItemId == "scrapeProfile") {
+        var notifOptions = {
+            type: "basic",
+            iconUrl: "48.png",
+            title: "!",
+            message: "Oh boy!!!!!!! I Scraped it!!!"
+        };
+        // Will only work of course if notifications are on
+        chrome.notifications.create('scrapeNotif', notifOptions);
+
+        // Change the background color of the page via injecting simple code
+        //  instead of calling a content script.
+        chrome.tabs.executeScript({
+            file: 'content.js'
+                    });
+        }
+});
