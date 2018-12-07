@@ -53,3 +53,12 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
 chrome.commands.onCommand.addListener(function(command) {
     scrape_it();
 });
+
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", msg.message, true);
+        xhr.send();
+
+});
+
+var save
