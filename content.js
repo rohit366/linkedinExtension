@@ -45,10 +45,10 @@ var urlPath = '&path='+group(/\/in\/(.+?)\/$/.exec(urlhref), 1);
 
 var fullname = document.getElementsByClassName("pv-top-card-section__name")[0].innerText;
 
-var cleanFullName = fullname.replace(/\W*\b[A-Z]{2,5}\b.+?$|,.+$/g, ''); 
-
+var cleanFullName = fullname.replace(/\W*\b[A-Z]{2,5}\b.+?$|,.+$/g, '').trim(); 
+    
 var firstName = 'fn=' + group(/^(\S+)/.exec(cleanFullName), 1);
-var lastName = '&ln=' + group(/\s(\S+)/.exec(cleanFullName), 1);
+var lastName = '&ln=' + group(/\s(\S+)$/.exec(cleanFullName), 1);
 
 try {
 var workItemsContainer = document.getElementsByClassName("pv-profile-section__section-info section-info pv-profile-section__section-info--has-more")[0].getElementsByTagName("li");
