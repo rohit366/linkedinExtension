@@ -80,7 +80,7 @@ try {
 var workItemsContainer = document.getElementsByClassName("pv-profile-section__section-info section-info pv-profile-section__section-info--has-more")[0].getElementsByTagName("li");
 }
 catch {
-var workItemsContainer = document.getElementsByClassName("pv-profile-section__section-info section-info pv-profile-section__section-info--has-no-more")[0].getElementsByTagName("li");
+var workItemsContainer = "";
 }
 
 var jobTitle = '&title=' + workItemsContainer[0].getElementsByTagName("h3")[0].innerText;
