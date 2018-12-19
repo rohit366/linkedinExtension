@@ -1,3 +1,4 @@
+// @TODO define variables at the top of the document.
 document.body.style.backgroundColor = "red";
 // Insert script to Scroll down to load the entire profile.?
 // window.scrollBy(0, 1000);
@@ -78,28 +79,30 @@ var lastName = '&ln=' + getName('last', fullname);
 
 try {
 var workItemsContainer = document.getElementsByClassName("pv-profile-section__section-info section-info pv-profile-section__section-info--has-more")[0].getElementsByTagName("li");
-}
-catch {
+} catch {
 var workItemsContainer = "";
 }
-
+// @TODO if these elements don't exist - add blank strings.
+try {
 var jobTitle = '&title=' + workItemsContainer[0].getElementsByTagName("h3")[0].innerText;
 var jobCompany = '&co=' + workItemsContainer[0].getElementsByTagName("h4")[0].getElementsByTagName("span")[1].innerText;
 var jobTime = workItemsContainer[0].getElementsByClassName("pv-entity__date-range")[0].getElementsByTagName("span")[1].innerText;
 
 var startDate = '&stime=' + group(/^(.+?\d+)/.exec(jobTime), 1);
 var endDate = '&etime=' + group(/–\s*(.+?)$/.exec(jobTime), 1);
-
-
+} catch (err) {
+    alert(err);
+}
+try {
 var webappUrl = 'https://script.google.com/macros/s/AKfycbz1NGbcab4A7ir7QcwQLJNl-KQyQlIg-mYZHmqXfh0EH0ST2VGO/exec';
 
 var output = webappUrl+'?'+firstName+lastName+jobTitle+jobCompany+startDate+endDate+skillSudoArr()+urlPath;
-}
-catch (err) {
+} catch (err) {
 alert(err);
 }
 // send the URL to the background script
 chrome.runtime.sendMessage({ message: output });
-
 setTimeout(function(){document.body.style.backgroundColor = "white";}, 500);
-
+} catch(err) {
+    alert(err);
+}
