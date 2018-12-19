@@ -21,6 +21,32 @@ function elmHasData(elm, n){
 
 }
 
+function getName(type, fullname){
+  function cleanName(fullname){
+    var regXcommaplus = new RegExp(",.+");
+    var regXjunk  = new RegExp('\\(|\\)|"|\\s*\\b[jJ][rR]\\b.*|\\s*\\b[sS][rR]\\b.*|\\s*\\bIi\\b.*|\\s*\\bI[Ii][Ii]\\b.*|\\s*\\bI[Vv]\\b.*|\\s+$', 'g');
+    var regXendDot = new RegExp("\\.$");
+    return fullname.replace(regXcommaplus, "").replace(regXjunk, "").replace(regXendDot, "");
+  }
+  function fixCase(fullname){ 
+    return fullname.replace(/\w\S*/g, function(txt){
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+  }
+  function getFirstName(fullname){
+  	return /^\w+\.\s+\w+(?=\s)|^\S+(?=\s)/.exec(cleanName(fullname)).toString();
+  }
+  function getLastName(fullname){
+  	return /\w*'\w*$|\w*-\w*$|\w+$/.exec(cleanName(fullname)).toString();
+  }
+  if(type == "first"){
+    return getFirstName(cleanName(fixCase(fullname)));
+  }
+  if(type == "last"){
+    return getLastName(cleanName(fixCase(fullname)));
+  }
+}
+
 function skillSudoArr(){
 var skillscontainer = document.getElementsByClassName("pv-profile-section pv-skill-categories-section")[0].getElementsByTagName("ol");
 
@@ -47,8 +73,8 @@ var fullname = document.getElementsByClassName("pv-top-card-section__name")[0].i
 
 var cleanFullName = fullname.replace(/\W*\b[A-Z]{2,5}\b.+?$|,.+$/g, '').trim(); 
     
-var firstName = 'fn=' + group(/^(\S+)/.exec(cleanFullName), 1);
-var lastName = '&ln=' + group(/\s(\S+)$/.exec(cleanFullName), 1);
+var firstName = 'fn=' + getName('first', fullname);
+var lastName = '&ln=' + getName('last', fullname);
 
 try {
 var workItemsContainer = document.getElementsByClassName("pv-profile-section__section-info section-info pv-profile-section__section-info--has-more")[0].getElementsByTagName("li");
@@ -76,5 +102,4 @@ alert(err);
 chrome.runtime.sendMessage({ message: output });
 
 setTimeout(function(){document.body.style.backgroundColor = "white";}, 500);
-//@TODO Be able to handle middle initials.  modify regex or if else to ignore single letter only.
-//
+
