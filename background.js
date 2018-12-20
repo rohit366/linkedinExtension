@@ -26,22 +26,12 @@ chrome.contextMenus.removeAll(function() {
 });
 
 function scrape_it() {
-        var notifOptions = {
-            type: "basic",
-            iconUrl: "48.png",
-            title: "!",
-            message: "Oh boy!!!!!!! I Got SCHWIFTY!!!"
-        };
-        // Will only work of course if notifications are on
-        chrome.notifications.create('scrapeNotif', notifOptions);
-
         // Change the background color of the page via injecting simple code
         //  instead of calling a content script.
         chrome.tabs.executeScript({
             file: "content.js"
             });
         }
-
 
 
 chrome.contextMenus.onClicked.addListener(function(clickData){
