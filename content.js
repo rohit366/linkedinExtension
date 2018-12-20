@@ -87,6 +87,10 @@ sudoSkillArr = '["'+skillArr.toString().replace(/\b,\b/g, '","')+'"]';
 return "&sklz="+sudoSkillArr;
 }
 
+try {
+window.scrollTo(0, document.body.scrollHeight);
+setTimeout(function(){widnow.scrollTo(0, document.body.scrollHeight)}, 100);
+
 urlhref = window.location.href;
 urlPath = "&path="+group(/\/in\/(.+?)\/$/.exec(urlhref), 1);
 fullname = document.getElementsByClassName("pv-top-card-section__name")[0].innerText;
@@ -111,6 +115,7 @@ function getJobAndCompany(){
 	}
 }
 
+
 getJobAndCompany();
 jobTime = workItemsContainer[0].getElementsByClassName("pv-entity__date-range")[0].getElementsByTagName("span")[1].innerText;
 
@@ -121,4 +126,11 @@ webappUrl = "https://script.google.com/macros/s/AKfycbz1NGbcab4A7ir7QcwQLJNl-KQy
 output = webappUrl+"?"+firstName+lastName+jobTitle+jobCompany+startDate+endDate+skillSudoArr()+urlPath;
 // send the URL to the background script
 chrome.runtime.sendMessage({ message: output });
+} catch(err) {
+    console.log(err);
+}
+
+setTimeout(function(){window.scrollTo(0, 0)}, 500);
 setTimeout(function(){document.body.style.backgroundColor = "white";}, 500);
+
+// @TODO better organize this code
